@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+option go_package = "/api";
+
+// import "google/protobuf/empty.proto";
+
+service AuthService {
+  rpc Register(RegisterPayload) returns (ValueCreated) {}
+  rpc Login(LoginPayload) returns (TokenPayload) {}
+}
+
+message ValueCreated {
+  int32 insertedID = 1;
+}
+
+message RegisterPayload {
+  string username = 1;
+  string email = 2;
+  string password = 3;
+}
+
+message LoginPayload {
+  string email = 1;
+  string password = 2;
+}
+
+message TokenPayload {
+  string tokenID = 1;
+  string accessToken = 2;
+}
